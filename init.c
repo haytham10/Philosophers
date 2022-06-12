@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_param.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 08:43:38 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/12 09:14:24 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:40:30 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	init_param(t_philo *philo, t_all *var)
 	int				i;
 
 	i = 0;
-	mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * var->num_philo);
+	mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * var->num_philo);
 	if (!mutex || !philo)
 		return (free_param(philo, mutex, var));
 	while (i < var->num_philo)

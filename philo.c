@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 08:07:01 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/12 09:19:41 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:41:53 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	print(t_philo *philo, unsigned long time, char *is_doing)
 	pthread_mutex_unlock(philo->print);
 }
 
-void	*init_data(void *p)
+void	*init_data(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo*)p;
+	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		usleep(10);
 	philo->last_meal = in_time();
@@ -39,7 +39,7 @@ void	*init_data(void *p)
 			philo->var->total_ate++;
 		usleep(philo->var->time_to_eat * 1000);
 		philo->last_meal = in_time();
-		pthread_mutex_unlock(&philo->mutex[philo->id- 1]);
+		pthread_mutex_unlock(&philo->mutex[philo->id - 1]);
 		pthread_mutex_unlock(&philo->mutex[philo->id % philo->var->num_philo]);
 		print(philo, real_time(philo), "is sleeping");
 		usleep(philo->var->time_to_sleep * 1000);
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 	t_all		*var;
 	t_philo		*philo;
 	pthread_t	*thread;
-	
+
 	if (ac < 5 || ac > 6)
 		return (exit_error());
 	var = (t_all *)malloc(sizeof(t_all));

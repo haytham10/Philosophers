@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 08:54:42 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/12 09:09:45 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/12 09:48:13 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ unsigned long	in_time(void)
 	unsigned long	l;
 	unsigned long	s;
 	unsigned long	u;
-	
+
 	gettimeofday(&time, NULL);
 	s = (time.tv_sec * 1000);
 	u = (time.tv_usec / 1000);
