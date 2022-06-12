@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/12 08:07:01 by hmokhtar          #+#    #+#             */
+/*   Updated: 2022/06/12 09:19:41 by hmokhtar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+void	print(t_philo *philo, unsigned long time, char *is_doing)
+{
+	pthread_mutex_lock(philo->print);
+	printf("%lums  %d %s\n", time, philo->id, is_doing);
+	pthread_mutex_unlock(philo->print);
+}
+
+void	*init_data(void *p)
+{
+	t_philo	*philo;
+
+	philo = (t_philo*)p;
+	if (philo->id % 2 == 0)
+		usleep(10);
+	philo->last_meal = in_time();
+	while (1)
+	{
+		pthread_mutex_lock(&philo->mutex[philo->id - 1]);
+		print(philo, real_time(philo), "has taken a fork");
+		pthread_mutex_lock(&philo->mutex[philo->id % philo->var->num_philo]);
+		print(philo, real_time(philo), "has taken a fork");
+		print(philo, real_time(philo), "is eating");
+		philo->ate++;
+		if (philo->ate == philo->var->must_eat)
+			philo->var->total_ate++;
+		usleep(philo->var->time_to_eat * 1000);
+		philo->last_meal = in_time();
+		pthread_mutex_unlock(&philo->mutex[philo->id- 1]);
+		pthread_mutex_unlock(&philo->mutex[philo->id % philo->var->num_philo]);
+		print(philo, real_time(philo), "is sleeping");
+		usleep(philo->var->time_to_sleep * 1000);
+		print(philo, real_time(philo), "is thinking");
+	}
+	return (0);
+}
+
+void	ft(t_philo *philo, t_all *var)
+{
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		if (philo[i].var->total_ate == philo[i].var->num_philo)
+		{
+			dst_mutex(philo);
+			free_param(philo, philo->mutex, var);
+			return ;
+		}
+		if (in_time() - philo[i].last_meal
+			> (unsigned long)var->time_to_die)
+		{
+			usleep(100);
+			pthread_mutex_lock(philo->print);
+			printf("%lums  %d died", real_time(philo), philo->id);
+			dst_mutex(philo);
+			free_param(philo, philo->mutex, var);
+			return ;
+		}
+		i = (i + 1) % var->num_philo;
+		usleep(500);
+	}
+}
+
+int	exit_error(void)
+{
+	printf("Wrong Arguments: number_of_philosophers\
+	  time_to_die time_to_eat time_to_sleep [num_eat]\n");
+	return (1);
+}
+
+int	main(int ac, char **av)
+{
+	int			i;
+	t_all		*var;
+	t_philo		*philo;
+	pthread_t	*thread;
+	
+	if (ac < 5 || ac > 6)
+		return (exit_error());
+	var = (t_all *)malloc(sizeof(t_all));
+	if (arg_to_param(var, av))
+		return (free_param(0, 0, var));
+	philo = (t_philo *)malloc(sizeof(t_philo) * var->num_philo);
+	if (init_param(philo, var))
+		return (1);
+	thread = (pthread_t *)malloc(sizeof(pthread_t) * var->num_philo);
+	i = -1;
+	while (++i < philo->var->num_philo)
+	{
+		pthread_create(&thread[i], NULL, init_data, philo + i);
+		usleep(100);
+	}
+	ft(philo, var);
+	free(thread);
+	return (0);
+}
