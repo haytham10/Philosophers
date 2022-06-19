@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:59:39 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:29:24 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:01:39 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	think(t_philo *philo)
 void	monitor(t_philo *philo)
 {
 	pthread_t	dead_thread;
-	
+
 	pthread_create(&dead_thread, NULL, &check_death, philo);
 	pthread_detach(dead_thread);
 	philo->death_time = get_time() + philo->var->time_to_die;

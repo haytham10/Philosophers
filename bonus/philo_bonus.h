@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:08:46 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:26:35 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:02:02 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			clean_exit(t_all *var);
 int				check_args(int ac, char **av);
 void			*check_death(void *arg);
 void			*check_eat(void *arg);
-int 			data_fill(int ac, char **av, t_all *var);
+int				data_fill(int ac, char **av, t_all *var);
 unsigned int	get_time(void);
 int				end_program(int err, t_all *var);
 void			monitor(t_philo *philo);

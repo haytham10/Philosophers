@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:08:13 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:33:54 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:01:48 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	clean_exit(t_all *var)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < var->num_philo)

@@ -6,13 +6,13 @@
 #    By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 09:04:08 by hmokhtar          #+#    #+#              #
-#    Updated: 2022/06/17 18:43:56 by hmokhtar         ###   ########.fr        #
+#    Updated: 2022/06/18 14:29:22 by hmokhtar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosopher
+NAME = philo
 
-BONUS_EXE = philosopher_bonus
+BONUS_EXE = philo_bonus
 
 SRC_PATH = ./src
 

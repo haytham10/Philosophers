@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:10:05 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:12:08 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:02:15 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_atoi(char *str)
 	return (res * sign);
 }
 
-static void *ft_bezero (void *s, size_t n)
+static void	*ft_bezero(void *s, size_t n)
 {
 	unsigned char	*str;
 

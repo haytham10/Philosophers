@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:14:14 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:25:55 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:00:44 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	*check_eat(void *arg)
 
 void	*check_death(void *arg)
 {
-	t_philo		*philo;
-	int			i;
-	unsigned int now;
+	t_philo			*philo;
+	int				i;
+	unsigned int	now;
 
 	i = -1;
 	philo = (t_philo *)arg;

@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:42:24 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:28:40 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:01:29 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ unsigned int	get_time(void)
 
 static int	open_semaphores(t_all *var)
 {
-	var->forks = sem_open("forks", O_CREAT , 0644, var->num_philo);
+	var->forks = sem_open("forks", O_CREAT, 0644, var->num_philo);
 	if (var->forks == SEM_FAILED)
 		return (0);
-	var->main = sem_open("main", O_CREAT , 0644, 0);
+	var->main = sem_open("main", O_CREAT, 0644, 0);
 	if (var->main == SEM_FAILED)
 		return (0);
-	var->print = sem_open("print", O_CREAT , 0644, 1);
+	var->print = sem_open("print", O_CREAT, 0644, 1);
 	if (var->print == SEM_FAILED)
 		return (0);
-	var->towforks = sem_open("towforks", O_CREAT , 0644, 0);
+	var->towforks = sem_open("towforks", O_CREAT, 0644, 0);
 	if (var->towforks == SEM_FAILED)
 		return (0);
 	return (1);
@@ -68,7 +68,7 @@ static int	philo_fill(t_all *var)
 	return (0);
 }
 
-int data_fill(int ac, char **av, t_all *var)
+int	data_fill(int ac, char **av, t_all *var)
 {
 	var->num_philo = ft_atoi(av[1]);
 	var->time_to_die = ft_atoi(av[2]);
