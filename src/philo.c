@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 08:07:01 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/12 09:41:53 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/21 19:00:19 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	ft(t_philo *philo, t_all *var)
 			free_param(philo, philo->mutex, var);
 			return ;
 		}
-		if (in_time() - philo[i].last_meal
-			> (unsigned long)var->time_to_die)
+		if (in_time() - philo[i].last_meal > (unsigned long)var->time_to_die)
 		{
 			usleep(100);
 			pthread_mutex_lock(philo->print);

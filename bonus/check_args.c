@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:34:55 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/17 18:34:55 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/21 18:53:44 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_num(int ac, char **av)
 
 static int	valid_arg(int ac, char **av)
 {
-	if (ft_atoi(av[1]) < 2 || ft_atoi(av[2]) < 0 || ft_atoi(av[3]) < 0)
+	if (ft_atoi(av[1]) < 1 || ft_atoi(av[2]) < 0 || ft_atoi(av[3]) < 0)
 		return (1);
 	if (ft_atoi(av[4]) < 0)
 		return (1);
