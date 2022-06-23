@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:50:36 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 14:16:25 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:13:40 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_forks(t_all *philo, int i)
 	{
 		pthread_mutex_unlock(&philo->all->forks[(philo->id - 1)
 			% philo->all->n_philo]);
-		pthread_mutex_unlock(&philo->all->forks[(philo->id - 1)
+		pthread_mutex_unlock(&philo->all->forks[(philo->id)
 			% philo->all->n_philo]);
 	}
 }
@@ -69,7 +69,8 @@ void	thread_init(t_philo *philo)
 	i = -1;
 	pthread_mutex_init(&philo->mutex, NULL);
 	while (++i < philo->n_philo)
-		pthread_create(&philo->philos[i].philo, NULL, handler, &philo->philos[i]);
+		pthread_create(&philo->philos[i].philo, NULL,
+			handler, &philo->philos[i]);
 	i = -1;
 	while (++i < philo->n_philo)
 		pthread_detach(philo->philos[i].philo);

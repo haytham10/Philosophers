@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:05:48 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 14:42:09 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:50:47 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*manage(t_philo *philo)
 		if (philo->n_eat)
 			if (!must_eat(&c, &philo->philos[i]))
 				return (NULL);
-		if ((get_time() - philo->philos[i].time) >= philo->t_die) 
+		if ((get_time() - philo->philos[i].time) >= philo->t_die)
 		{
 			print(&philo->philos[i], "died", 0);
 			return (NULL);

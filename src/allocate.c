@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:44:06 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 14:03:48 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:10:55 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ int	allocate(t_philo *philo, char **av)
 	philo->philos = malloc(sizeof(t_all) * (philo->n_philo));
 	if (!philo->philos)
 		return (0);
+	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->n_philo);
+	if (!philo->forks)
+		return (free(philo->philos), 0);
 	philo->time = get_time();
 	while (++i < philo->n_philo)
 	{
+		pthread_mutex_init(&philo->forks[i], NULL);
 		philo->philos[i].id = i + 1;
-		philo->philos[i].time = philo->time;
 		philo->philos[i].ate = 0;
 		philo->philos[i].all = philo;
+		philo->philos[i].time = philo->time;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 14:10:58 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 14:15:24 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:55:44 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	print(t_all *philo, char *s, int lamp)
 {
 	pthread_mutex_lock(&philo->all->mutex);
 	if (s)
-		printf("%lldms %d %s\n", (get_time() - philo->all->time)
-			, philo->id, s);
+		printf("%lldms %d %s\n", (get_time() - philo->all->time),
+			philo->id, s);
 	if (lamp)
 		pthread_mutex_unlock(&philo->all->mutex);
 }
