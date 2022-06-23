@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 13:40:19 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 13:41:58 by hmokhtar         ###   ########.fr       */
+/*   Created: 2022/06/23 14:10:58 by hmokhtar          #+#    #+#             */
+/*   Updated: 2022/06/23 14:15:24 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+long long	get_time(void)
 {
-	t_philo	philo;
+	struct timeval	now;
 
-	if ((ac == 5 || ac == 6) && check_args(ac, av))
-	{
-		if (!allocate(&philo, av))
-			return (printf("ERROR: malloc\n"), 0);
-		thread_init(&philo);
-		manage(&philo);
-		return (free_all(&philo), 0);
-	}
+	gettimeofday(&now, NULL);
+	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+}
+
+void	print(t_all *philo, char *s, int lamp)
+{
+	pthread_mutex_lock(&philo->all->mutex);
+	if (s)
+		printf("%lldms %d %s\n", (get_time() - philo->all->time)
+			, philo->id, s);
+	if (lamp)
+		pthread_mutex_unlock(&philo->all->mutex);
 }

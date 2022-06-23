@@ -6,7 +6,7 @@
 #    By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 09:04:08 by hmokhtar          #+#    #+#              #
-#    Updated: 2022/06/18 14:29:22 by hmokhtar         ###   ########.fr        #
+#    Updated: 2022/06/23 14:49:18 by hmokhtar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ BONUS_EXE = philo_bonus
 
 SRC_PATH = ./src
 
-SRC = philo.c init.c utils.c
+SRC = philo.c allocate.c check_args.c free_all.c manage.c \
+		print.c thread_init.c \
 
 SRC_INC = ./src/philo.h
 

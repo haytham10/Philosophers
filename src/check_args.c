@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 08:54:42 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/12 09:48:13 by hmokhtar         ###   ########.fr       */
+/*   Created: 2022/06/23 13:42:24 by hmokhtar          #+#    #+#             */
+/*   Updated: 2022/06/23 14:16:41 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,13 @@ int	ft_atoi(char *str)
 	return (res * sign);
 }
 
-void	dst_mutex(t_philo *philo)
+int	check_args(int ac, char **av)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo->var->num_philo)
-		pthread_mutex_destroy(&philo->mutex[i++]);
-}
-
-unsigned long	in_time(void)
-{
-	struct timeval	time;
-	unsigned long	l;
-	unsigned long	s;
-	unsigned long	u;
-
-	gettimeofday(&time, NULL);
-	s = (time.tv_sec * 1000);
-	u = (time.tv_usec / 1000);
-	l = s + u;
-	return (l);
-}
-
-unsigned long	real_time(t_philo *philo)
-{
-	return (in_time() - philo->var->time);
+	while (++i < ac)
+		if (ft_atoi(av[i]) < 1)
+			return (printf("ERROR: Parser\n"), 0);
+	return (1);
 }

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 13:40:19 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/23 13:41:58 by hmokhtar         ###   ########.fr       */
+/*   Created: 2022/06/23 14:16:55 by hmokhtar          #+#    #+#             */
+/*   Updated: 2022/06/23 14:18:25 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	free_all(t_philo *philo)
 {
-	t_philo	philo;
+	int	i;
 
-	if ((ac == 5 || ac == 6) && check_args(ac, av))
-	{
-		if (!allocate(&philo, av))
-			return (printf("ERROR: malloc\n"), 0);
-		thread_init(&philo);
-		manage(&philo);
-		return (free_all(&philo), 0);
-	}
+	i = -1;
+	while (++i < philo->n_philo)
+		pthread_mutex_destroy(&(philo->forks[i]));
+	pthread_mutex_destroy(&(philo->mutex));
+	free(philo->philos);
+	free(philo->forks);
+	return (0);
 }
