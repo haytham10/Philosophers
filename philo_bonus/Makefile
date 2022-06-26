@@ -6,57 +6,35 @@
 #    By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 09:04:08 by hmokhtar          #+#    #+#              #
-#    Updated: 2022/06/23 14:55:31 by hmokhtar         ###   ########.fr        #
+#    Updated: 2022/06/26 12:02:10 by hmokhtar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = philo_bonus
 
-BONUS_EXE = philo_bonus
+SRC = ./check_args.c ./check_death.c ./data_fill.c ./end_program.c \
+		./monitor.c ./philo_bonus.c ./print.c ./utils.c \
 
-SRC_PATH = ./src
-
-SRC = philo.c allocate.c check_args.c free_all.c manage.c \
-		print.c thread_init.c \
-
-SRC_INC = ./src/philo.h
-
-BONUS_PATH = ./bonus
-
-BONUS = check_args.c check_death.c data_fill.c end_program.c \
-		monitor.c philo_bonus.c print.c utils.c \
-
-BONUS_INC = ./bonus/philo_bonus.h
+BONUS_INC = ./philo_bonus.h
 
 FLAGS = -Wall -Wextra -Werror
 
 CC = cc
 
-SRC_NAME = $(addprefix $(SRC_PATH)/, $(SRC))
-
-SRC_OBJ = $(SRC_NAME:.c=.o)
-
-BONUS_NAME = $(addprefix $(BONUS_PATH)/, $(BONUS))
-
-BONUS_OBJ = $(BONUS_NAME:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC_NAME) $(SRC_OBJ) $(SRC_INC)
-	@$(CC) $(FLAGS) $(SRC_OBJ) -o $(NAME)
+$(NAME): $(SRC) $(OBJ) $(BONUS_INC)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
-bonus: $(BONUS_EXE)
-
-$(BONUS_EXE): $(BONUS_NAME) $(BONUS_OBJ) $(BONUS_INC)
-	@$(CC) $(FLAGS) $(BONUS_OBJ) -o $(BONUS_EXE)
-
-%.o : %.c
+%.o : %.c $(BONUS_INC)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(SRC_OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME) $(BONUS_EXE)
+	@rm -rf $(NAME)
 
 re: fclean all
