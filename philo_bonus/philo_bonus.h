@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:08:46 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/19 16:02:02 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/06/26 16:56:39 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 typedef struct s_philo
 {
 	int				n;
-	int				n1;
 	int				id;
 	int				num_eat;
 	unsigned int	death_time;
