@@ -6,7 +6,7 @@
 /*   By: hmokhtar <hmokhtar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:50:36 by hmokhtar          #+#    #+#             */
-/*   Updated: 2022/06/26 12:04:29 by hmokhtar         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:15:00 by hmokhtar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	*handler(void *arg)
 	{
 		init_forks(philo, 0);
 		print(philo, "is eating", 1);
+		philo->ate += 1;
 		ft_usleep(philo->all->t_eat);
 		init_forks(philo, 1);
 		philo->time = get_time();
 		print(philo, "is sleeping", 1);
 		ft_usleep(philo->all->t_sleep);
 		print(philo, "is thinking", 1);
-		philo->ate += 1;
 	}
 }
 
